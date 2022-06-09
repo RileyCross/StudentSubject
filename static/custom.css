@@ -1,0 +1,13 @@
+.RegisterDiv {
+    background: #2b2b2b;
+    color: rgb(253, 253, 253);
+    /*border: 3px outset lightgray;*/
+    padding: 4em;
+    border-radius: 5px;
+    position: absolute;
+    width: 900px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
