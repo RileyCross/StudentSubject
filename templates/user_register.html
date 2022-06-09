@@ -3,5 +3,13 @@
 {% block title %}Sign-up{% endblock %}
 
 {% block content %}
-
+<div class="RegisterDiv">
+    <h2>Register</h2>
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+        <input id="u" name="name" type="text" required placeholder="John Doe"><br>
+        <input id="em" name="email" type="email" required placeholder="firlast@student.pakuranga.school.nz"><br>
+        <input id="birth" name="dob" type="date" required><br>
+        <input id="yr" name="yearlevel" type="text">
+    </form>
+</div>
 {% endblock %}
