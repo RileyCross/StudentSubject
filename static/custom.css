@@ -11,3 +11,11 @@
     margin-right: -50%;
     transform: translate(-50%, -50%);
 }
+
+.customBackground {
+    background-image: url('images/customBackground1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    opacity: 0.9
+}
