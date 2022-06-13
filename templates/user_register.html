@@ -10,7 +10,28 @@
         <input id="em" name="email" type="email" required placeholder="firlast@student.pakuranga.school.nz"><br>
         <input id="birth" name="dob" type="date" required><br>
         <input id="yr" name="yearlevel" type="text" required placeholder="12"> <br>
-        <input id="pw" name="password" type="password" required placeholder="••••••••">
+        <input id="pw" name="password" type="password" required placeholder="••••••••"> <br> <br>
+
+        <input id="b" name="submit" type="text" value="TRUE" placeholder="Submit"> 
     </form>
 </div>
+
+<script>
+    let passwordInput = document.getElementById('pass');
+    let showButton = document.getElementById('show');
+
+    showButton.addEventListener('click', showPassword);
+
+    function showPassword() {
+        let type = passwordInput.getAttribute('type');
+        if (type == 'password') {
+            passwordInput.setAttribute('type', 'text');
+            showButton.textContent = 'Hide';
+        } else {
+            passwordInput.setAttribute('type', 'password');
+            showButton.textContent = 'Show';
+        }
+    }
+</script>
+
 {% endblock %}
