@@ -13,8 +13,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <title>{% block title %}{% endblock %} | Subject Chooser</title>
 </head>
-</html>
-<body>
-{% block content %}
-{% endblock %}
+<body class="{% block extra_class %}{% endblock %}">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/movies">Movies</a></li>
+        {% if session["role"]=='admin' %}
+            <li><a href="/dashboard">Dashboard</a></li>
+        {% else %}
+
+        {% endif %}
+
+        {% if 'logged_in' in session %}
+        <li><a href="/view?id={{session.id}}">View Profile</a></li>
+        {% endif %}
+        <li style="float:right">
+            {% if 'logged_in' in session %}
+            <a class="active" href="/logout">Log out</a>
+            {% else %}
+            <a class="active" href="/login">Login</a>
+            {% endif %}
+        </li>
+        <li style="float:right">
+            {% if 'logged_in' not in session %}
+            <a class="" href="/register">Sign Up</a>
+            {% else %}
+
+            {% endif %}
+        </li>
+    </ul>
+    {% block content %}
+    {% endblock %}
+    {% if get_flashed_messages()|length > 0 %}
+    <ul>
+        {% for message in get_flashed_messages() %}
+        <li class="Alert">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </body>
+</html>
