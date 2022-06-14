@@ -16,13 +16,23 @@ wsgi_app = app.wsgi_app
 # Make 
 
 # Home Page
+
+#@app.before_request
+#def restrict():
+    #restricted_pages = ['user_list','view_user','edit_user','delete_user']
+    #admin_only = ['delete_user','edit_user','user_list']
+    #if 'logged_in' not in session and request.endpoint in restricted_pages:
+        #flash("You lack permissions to access that page.")
+        #return redirect('/')
+
+# Home Page
 @app.route('/home')
 def home():
     """Renders a sample page."""
     return render_template("homepage.html")
 
 # Registering
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def newuser():
     if request.method == 'POST':
 
@@ -53,7 +63,34 @@ def newuser():
             return redirect('/home')
     return render_template('user_register.html')
 
+# User Login
+@app.route('/', methods=['GET','POST'])
+def userlogin():
+    if request.method == 'POST':
 
+        password = request.form['password']
+        encrypted_password = hashlib.sha256(password.encode()).hexdigest()
+
+        with create_connection() as connection:
+            with connection.cursor() as cursor:
+                sql = "select * from users where email=%s AND password=%s"
+                values = (
+                    request.form['email'],
+                    encrypted_password
+                )
+                cursor.execute(sql, values)
+                result = cursor.fetchone()
+        if result: # Checks sessions
+            session['logged_in'] = True
+            session['first_name'] = result['first_name']
+            session['role'] = result['role']
+            session['id'] = result['id']
+            return redirect("/dashboard")
+        else:
+            flash("Incorrect Password")
+            return redirect("/login")
+    else:
+        return render_template('login.html')
 
 if __name__ == '__main__':
     import os
