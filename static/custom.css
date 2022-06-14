@@ -13,10 +13,10 @@
 }
 
 .customBackground {
-    background-image: url('images/backgroundTest1.jpg');
+    background-image: url('images/backgroundTest5.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;
+    background-size: 100% 140%;
     opacity: 0.9
 }
 
