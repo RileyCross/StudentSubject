@@ -28,7 +28,6 @@ wsgi_app = app.wsgi_app
 # Home Page
 @app.route('/home')
 def home():
-    """Renders a sample page."""
     return render_template("homepage.html")
 
 # Registering
