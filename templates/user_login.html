@@ -1,0 +1,21 @@
+{% extends '_layout.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block extra_class %}customBackground{% endblock %}
+
+{% block content %}
+<div class="RegisterDiv">
+    <h1>Log-In</h1>
+    <form method="post" style="display: flex; flex-direction: column;">
+        <!--<label for="email">Email:</label>-->
+        <input id="email" name="email" type="email" placeholder="Email" required>
+        <br />
+        <!--<label for="password">Password</label>-->
+        <input id="password" name="password" type="password" placeholder="Password" required>
+        <br>
+        <input type="submit" value="Log-in">
+    </form>
+    <p>No account? <a style="text-decoration:none;" href="/register">Create one!</a></p>
+</div>
+{% endblock %}
