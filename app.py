@@ -85,12 +85,12 @@ def userlogin():
             session['first_name'] = result['first_name']
             session['role'] = result['role']
             session['id'] = result['id']
-            return redirect("/dashboard")
+            return redirect("/home")
         else:
             flash("Incorrect Password")
-            return redirect("/login")
+            return redirect("/")
     else:
-        return render_template('login.html')
+        return render_template('user_login.html')
 
 if __name__ == '__main__':
     import os
