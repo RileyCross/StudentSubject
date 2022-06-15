@@ -99,7 +99,7 @@ if __name__ == '__main__':
 
     HOST = os.environ.get('SERVER_HOST', 'localhost')
     try:
-        PORT = int(os.environ.get('SERVER_PORT', '3333'))
+        PORT = int(os.environ.get('SERVER_PORT', '3333')) # Port Number (localhost://PORTNUMBER)
     except ValueError:
         PORT = 3333
     app.run(HOST, PORT, debug=True)
