@@ -15,7 +15,7 @@
 </head>
 <body class="{% block extra_class %}{% endblock %}">
     <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="/movies">Movies</a></li>
         {% if session["role"]=='admin' %}
             <li><a href="/dashboard">Dashboard</a></li>
