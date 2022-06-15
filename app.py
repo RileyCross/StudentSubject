@@ -10,12 +10,10 @@ app.register_blueprint(setup)
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 # TO DO LIST
-# Make Home Page
-# Make Login / Signup Page
+# Make Home Page [PLACEHOLDER MADE]
+# Make Login / Signup Page [DONE]
 # Make Dashboard Table Page
-# Make 
-
-# Home Page
+# Make [bro?]
 
 #@app.before_request
 #def restrict():
