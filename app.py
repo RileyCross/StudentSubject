@@ -24,12 +24,12 @@ wsgi_app = app.wsgi_app
         #return redirect('/')
 
 @app.errorhandler(403)
-def forbidden():
-    return render_template("forbiddenpage.html",403)
+def forbidden(error):
+    return render_template("forbiddenpage.html"), 403
 
 @app.errorhandler(404)
-def missing():
-    return render_template("missingpage.html",404)
+def missing(error):
+    return render_template("missingpage.html"), 404
 
 # Home Page
 @app.route('/home')
