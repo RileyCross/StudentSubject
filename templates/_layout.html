@@ -21,7 +21,7 @@
         {% else %}
 
         {% endif %}
-        
+
         {% if session["role"]=='admin' %}
             <li><a href="/dashboard">Dashboard</a></li>
         {% else %}
@@ -35,12 +35,12 @@
             {% if 'logged_in' in session %}
             <a class="active" href="/logout">Log out</a>
             {% else %}
-            <a class="active" href="/login">Login</a>
+            <a class="active" href="/">Login</a>
             {% endif %}
         </li>
         <li style="float:right">
             {% if 'logged_in' not in session %}
-            <a class="" href="/register">Sign Up</a>
+            <a class="" href="/signup">Sign Up</a>
             {% else %}
 
             {% endif %}
