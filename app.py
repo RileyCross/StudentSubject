@@ -43,14 +43,14 @@ def newuser():
 
         # Password Encrypter
         password = request.form['password']
-        encrypted_password = hashlib.sah256(password.encode()).hexdigest()
+        encrypted_password = hashlib.sha256(password.encode()).hexdigest()
 
         # Avatar encoded name here or something idk lol
 
         with create_connection() as connection:
             with connection.cursor() as cursor:
                 sql="""insert into users (name, email, dob, yearlevel, password)
-                    values=(%s, %s, %s, %s, %s, %s)"""
+                    values(%s, %s, %s, %s, %s)"""
                 values=(
                     request.form['name'],
                     request.form['email'],
