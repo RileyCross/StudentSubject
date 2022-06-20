@@ -97,6 +97,10 @@ def userlogin():
     else:
         return render_template('user_login.html')
 
+@app.route('/dash')
+def board():
+    """Dash Board"""
+
 if __name__ == '__main__':
     import os
     # We might use cookies for this idk
