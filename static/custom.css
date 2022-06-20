@@ -63,3 +63,24 @@ li {
 .active {
     background-color: #04AA6D;
 }
+
+/* Flash */
+.Alert {
+    padding: 10px;
+    background-color: #ff5b4f; /* Red */
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    bottom: 0%;
+    position: absolute;
+    right: 2%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    animation: fade-out 1s 7s both;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
