@@ -11,23 +11,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <title>{% block title %}{% endblock %} | HTML</title>
+    <title>{% block title %}{% endblock %} | Subject Select</title>
 </head>
-<body class="{% block extra_class %}{% endblock %}">
+<body class="{% block extra_class %}{% endblock %}"> <!-- Custom Background -->
     <ul>
+    <!-- Home Button -->
         <li><a href="/home">Home</a></li>
+
+    <!-- Checks if user is logged in to view subjects board -->
         {% if 'logged_in' in session %}
             <li><a href="/subjects">Subjects</a></li>
         {% else %}
 
         {% endif %}
 
+    <!-- Checks if user is Admin -->
         {% if session["role"]=='admin' %}
             <li><a href="/dashboard">Dashboard</a></li>
         {% else %}
 
         {% endif %}
 
+    <!-- Checks if user is Logged in, to view their profile -->
         {% if 'logged_in' in session %}
         <li><a href="/view?id={{session.id}}">View Profile</a></li>
         {% endif %}
@@ -38,6 +43,8 @@
             <a class="active" href="/">Login</a>
             {% endif %}
         </li>
+        
+    <!-- Checks if user is NOT Logged in, to view Sign-Up Button-->
         <li style="float:right">
             {% if 'logged_in' not in session %}
             <a class="" href="/signup">Sign Up</a>
@@ -45,10 +52,18 @@
 
             {% endif %}
         </li>
+    <!-- Checks if logged in to view the name they're logged in as -->
+            {% if 'logged_in' in session %}
+            <p style="float:right; color:#ffffff; margin-block: 0;">Welcome, {{session.name}}!</p>
+            {% else %}
+
+            {% endif %}
     </ul>
-    {% block content %}
+    {% block content %} <!-- Jinja Body Content -->
     {% endblock %}
+
     {% if get_flashed_messages()|length > 0 %}
+    <!-- Flash Messages with "Alert" Class -->
     <ul>
         {% for message in get_flashed_messages() %}
         <li class="Alert">{{ message }}</li>
