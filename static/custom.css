@@ -28,10 +28,9 @@
 
 
 .customBackground {
-    background-image: url('images/backgroundTest5.jpg');
-    background-repeat: no-repeat;
+    background-image: url('images/backgroundTest6.png');
+    /*background-repeat: no-repeat;*/
     background-attachment: fixed;
-    background-size: 100% 140%;
     opacity: 0.9
 }
 
@@ -58,6 +57,7 @@ li {
         /* Change the link color to #111 (black) on hover */
         li a:hover {
             background-color: #111;
+            color: white
         }
 
 .active {
@@ -80,7 +80,13 @@ li {
     animation: fade-out 1s 7s both;
 }
 
+/* Flash Message Fade Animation */
 @keyframes fade-out {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+p {
+    padding: 14px 16px;
+    text-align: center;
 }
