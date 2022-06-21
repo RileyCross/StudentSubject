@@ -23,10 +23,12 @@ wsgi_app = app.wsgi_app
         #flash("You lack permissions to access that page.")
         #return redirect('/')
 
+# Remade version of the 403 error page
 @app.errorhandler(403)
 def forbidden(error):
     return render_template("forbiddenpage.html"), 403
 
+# Remade version of the 404 error page
 @app.errorhandler(404)
 def missing(error):
     return render_template("missingpage.html"), 404
@@ -41,11 +43,11 @@ def home():
 def newuser():
     if request.method == 'POST':
 
-        # Password Encrypter
+        # Encrypts password with sha256, which is 64bit
         password = request.form['password']
         encrypted_password = hashlib.sha256(password.encode()).hexdigest()
 
-        # Avatar encoded name here or something idk lol
+        # Encoded PFP Names will be coded HERE vvv
 
         with create_connection() as connection:
             with connection.cursor() as cursor:
@@ -73,9 +75,10 @@ def newuser():
 def userlogin():
     if request.method == 'POST':
 
+        # Makes entered password also work with encrypted password
         password = request.form['password']
         encrypted_password = hashlib.sha256(password.encode()).hexdigest()
-
+        # Uses SQL to check if the user exists
         with create_connection() as connection:
             with connection.cursor() as cursor:
                 sql = "select * from users where email=%s AND password=%s"
@@ -87,7 +90,7 @@ def userlogin():
                 result = cursor.fetchone()
         if result: # Checks sessions
             session['logged_in'] = True
-            session['first_name'] = result['first_name']
+            session['name'] = result['name']
             session['role'] = result['role']
             session['id'] = result['id']
             return redirect("/home")
@@ -97,6 +100,7 @@ def userlogin():
     else:
         return render_template('user_login.html')
 
+# User Dashboard
 @app.route('/dash')
 def board():
     """Dash Board"""
