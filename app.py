@@ -105,6 +105,15 @@ def userlogin():
 def board():
     """Dash Board"""
 
+# Profile
+@app.route('/view')
+def view_user():
+    with create_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("select * from users where id=%s", request.args['id'])
+            result = cursor.fetchone()
+    return render_template('user_profile.html', result=result)
+
 if __name__ == '__main__':
     import os
     # We might use cookies for this idk
