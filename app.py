@@ -113,6 +113,7 @@ def userlogin():
 @app.route('/dash')
 def board():
     """Dash Board"""
+    # Not doing this right now :)
 
 # Profile
 @app.route('/view')
@@ -122,6 +123,27 @@ def view_user():
             cursor.execute("select * from users where id=%s", request.args['id'])
             result = cursor.fetchone()
     return render_template('user_profile.html', result=result)
+
+@app.route('/select-subject', methods=['GET','POST'])
+def select():
+    if request.method == 'POST':
+
+        with create_connection() as connection:
+            with connection.cursor() as cursor:
+                sql = """insert into users (subject_name, subject_code, subject_leader, subject_description, subject_maxstudents) 
+                values (%s,%s,%s,%s,%s)"""
+                values = (
+                    request.form['subject_name'],
+                    request.form['subject_code'],
+                    request.form['subject_leader'],
+                    request.form['subject_description'],
+                    request.form['subject_maxstudents']
+                )
+                cursor.execute(sql,values)
+                connection.commit()
+
+    return render_template('subject_create.html')
+
 
 if __name__ == '__main__':
     import os
