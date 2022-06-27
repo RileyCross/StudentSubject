@@ -64,11 +64,10 @@
 
             {% endif %}
     </ul>
-    {% block content %} <!-- Jinja Body Content -->
+    {% block content %}
     {% endblock %}
 
     {% if get_flashed_messages()|length > 0 %}
-    <!-- Flash Messages with "Alert" Class -->
     <ul>
         {% for message in get_flashed_messages() %}
         <li class="Alert">{{ message }}</li>
