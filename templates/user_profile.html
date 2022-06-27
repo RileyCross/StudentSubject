@@ -1,0 +1,39 @@
+{% extends '_layout.html' %}
+
+{% block title %}View profile{% endblock %}
+
+{% block extra_class %}customBackground{% endblock %}
+
+{% block content %}
+<div class="LoginDiv">
+    <h2 style="font-size: xxx-large;">{{ result.first_name }} {{ result.last_name }}'s Profile</h2>
+
+    <p><a class="btn btn-primary" href="mailto:{{ result.email }}">E-mail: {{ result.email }}</a></p>
+
+    <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250" style="float:right;">
+    <div class="ButtonsDiv">
+        <p>
+            <a style="bottom: 5%;position: absolute;right: 20%;"class="btn btn-primary" href="/edit?id={{ result.id }}">Edit Information</a>
+            <a style="bottom: 5%;position: absolute;right: 2%;"class="btn btn-primary" href="/delete?id={{ result.id }}">Delete User</a>
+        </p>
+        <p>
+            <a style="bottom: 5%;position: absolute;left: 3%;"class="btn btn-primary" href="{{ url_for('user_list') }}">Back to dashboard</a>
+        </p>
+    </div>
+</div>
+
+<table class="styled-table" style="position: absolute;width: 900px;top: 30%;">
+    <tr class="active-row">
+        <th>User ID</th>
+    </tr>
+    {% for row in result %}
+    <tr>
+        <td>{{row.user_id}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<h2>remember to add a table of what movies they watched</h2>
+
+{% endblock %}
