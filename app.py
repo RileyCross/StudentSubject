@@ -47,7 +47,14 @@ def newuser():
         password = request.form['password']
         encrypted_password = hashlib.sha256(password.encode()).hexdigest()
 
-        # Encoded PFP Names will be coded HERE vvv
+        # Encoded PFP Names (Purpose of making it unique names so SQL doesn't have a seizure)
+        if request.files['avatar'].filename:
+            avatar_image = request.files["avatar"]
+            ext = os.path.splitext(avatar_image.filename)[1]
+            avatar_filename = str(uuid.uuid4())[:32] + ext
+            avatar_image.save("static/images/" + avatar_filename)
+        else:
+            avatar_filename = "deleted.png"
 
         with create_connection() as connection:
             with connection.cursor() as cursor:
@@ -59,7 +66,8 @@ def newuser():
                     request.form['dob'],
                     request.form['yearlevel'],
                     #request.form['password'],
-                    encrypted_password
+                    encrypted_password,
+                    avatar_filename
                     )
                 try:
                     cursor.execute(sql,values)
@@ -78,6 +86,7 @@ def userlogin():
         # Makes entered password also work with encrypted password
         password = request.form['password']
         encrypted_password = hashlib.sha256(password.encode()).hexdigest()
+
         # Uses SQL to check if the user exists
         with create_connection() as connection:
             with connection.cursor() as cursor:
@@ -92,7 +101,7 @@ def userlogin():
             session['logged_in'] = True
             session['name'] = result['name']
             session['role'] = result['role']
-            session['id'] = result['id']
+            session['id'] = result['id'],
             return redirect("/home")
         else:
             flash("Incorrect Password")
