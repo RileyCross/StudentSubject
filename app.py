@@ -10,18 +10,22 @@ app.register_blueprint(setup)
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 # TO DO LIST
-# Make Home Page [PLACEHOLDER MADE]
+# Make Home Page [ALMOST DONE]
 # Make Login / Signup Page [DONE]
 # Make Dashboard Table Page
 # Make [bro?]
 
-#@app.before_request
-#def restrict():
-    #restricted_pages = ['user_list','view_user','edit_user','delete_user']
-    #admin_only = ['delete_user','edit_user','user_list']
-    #if 'logged_in' not in session and request.endpoint in restricted_pages:
-        #flash("You lack permissions to access that page.")
-        #return redirect('/')
+@app.before_request
+def restrict():
+    restricted_pages = [
+
+    ]
+    admin_only = [
+        'board'
+    ]
+    if 'logged_in' not in session and request.endpoint in restricted_pages:
+        flash("You lack permissions to access that page.")
+        return redirect('/')
 
 # Remade version of the 403 error page
 @app.errorhandler(403)
@@ -47,7 +51,7 @@ def newuser():
         password = request.form['password']
         encrypted_password = hashlib.sha256(password.encode()).hexdigest()
 
-        # Encoded PFP Names (Purpose of making it unique names so SQL doesn't have a seizure)
+        # Encoded File Names (Purpose of making it unique names so Python doesn't have a seizure)
         if request.files['avatar'].filename:
             avatar_image = request.files["avatar"]
             ext = os.path.splitext(avatar_image.filename)[1]
@@ -142,7 +146,7 @@ def select():
                 cursor.execute(sql,values)
                 connection.commit()
 
-    return render_template('subject_create.html')
+    return render_template('subject_select.html')
 
 
 if __name__ == '__main__':
