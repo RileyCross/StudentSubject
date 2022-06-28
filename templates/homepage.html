@@ -10,12 +10,27 @@
     <p>Information is found here about subjects, choosing subjects, and what they include.</p>
 </div>
 <!--Subject Description Card-->
-<div class="card text-center mx-auto" style="width: 18rem; background: #3f3f3f; color: white; margin-left: 40px; margin-top: 40px; border: 50px;">
-    <img src="/static/images/subjectChoose.png" class="card-img-top">
-    <div class="card-body">
-        <h5 class="card-title">About the Subjects</h5>
-        <p class="card-text">Check out what some of the subjects mean! They might grab your interests...</p>
-        <a href="/about-subjects" class="btn btn-primary">LEARN MORE</a>
+<div class="row row-cols-1 row-cols-md-5 g-4 mx-auto">
+    <div class="col">
+        <div class="card border-light mb-3 text-center bg-transparent" style="background:#3f3f3f; color: white;">
+            <img src="/static/images/subjectChoose.png" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <a href="/about-subjects" class="btn btn-primary bg-transparent border-primary" style="font:bold">LEARN MORE</a>
+            </div>
+        </div>
     </div>
+    <div class="col">
+        <div class="card border-light mb-3 text-center bg-transparent" style="background:#3f3f3f; color: white;">
+            <img src="/static/images/subjectChoose.png" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">About the Subjects</h5>
+                <p class="card-text">Check out what some of the subjects mean! They might grab your interests...</p>
+                <a href="/about-subjects" class="btn btn-primary bg-transparent border-primary" style="font:bold">LEARN MORE</a>
+            </div>
+        </div>
 </div>
+
+
 {% endblock %}
