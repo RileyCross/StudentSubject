@@ -18,7 +18,7 @@ wsgi_app = app.wsgi_app
 @app.before_request
 def restrict():
     restricted_pages = [
-
+        'board'
     ]
     admin_only = [
         'board'
@@ -106,18 +106,28 @@ def userlogin():
             session['name'] = result['name']
             session['role'] = result['role']
             session['id'] = result['id'],
-            return redirect("/home")
+            flash("Welcome, " +result["name"])
+            return redirect("/home")    
         else:
             flash("Incorrect Password")
             return redirect("/")
     else:
         return render_template('user_login.html')
-
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("You have successfully logged out")
+    return redirect('/')
 # User Dashboard
 @app.route('/dash')
 def board():
-    """Dash Board"""
-    # Not doing this right now :)
+    with create_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                        SELECT * FROM users
+                        """)
+            result = cursor.fetchall()
+    return render_template('dash.html', result=result)
 
 # Profile
 @app.route('/view')
