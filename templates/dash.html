@@ -1,0 +1,31 @@
+{% extends '_layout.html' %}
+
+{% block title %}User Dashboard{% endblock %}
+{% block extra_class %}customBackground{% endblock %}
+{% block content %}
+<h1 style="color:white; text-align:center; font-weight: bold;">User Dashboard</h1>
+<table class="styled-table" style="position: absolute;width: 900px;top: 30%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);">
+    <tr class="active-row"><th>ID</th><th>Name</th><th>Email</th><th>Avatar</th><th>Delete</th><th>Edit</th><th>View</th></tr>
+    {% for row in result %}
+    <tr>
+        <td>{{row.id}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.email}}</td>
+        <td><img src="{{ url_for('static', filename='images/' + (row.avatar or 'default.png')) }}" height="50" width="50"></td>
+
+
+        <td><a style="text-decoration:none; font-weight: bold; color: rgb(255, 255, 255);" href="/delete?id={{row.id}}" onclick="return confirm('Are you sure you want to delete: {{row.first_name}} {{row.last_name}}?')">Delete</a></td>
+        <td>
+            <a style="text-decoration:none; font-weight: bold; color: rgb(255, 255, 255);" href="/edit?id={{row.id}}">
+                Edit
+            </a>
+        <td>
+            <a style="text-decoration:none; font-weight: bold; color: rgb(255, 255, 255);" href="/view?id={{row.id}}">
+                Profile
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br />
+{% endblock %}
