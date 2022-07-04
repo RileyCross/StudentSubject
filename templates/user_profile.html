@@ -5,7 +5,7 @@
 {% block extra_class %}customBackground{% endblock %}
 
 {% block content %}
-<div class="LoginDiv">
+<div class="LoginDiv" style="top:40%">
     <h2 style="font-size: xxx-large;">{{ result.name }}'s Profile</h2>
 
     <p><a  class="btn btn-primary" style="float:left;" href="mailto:{{ result.email }}">E-mail: {{ result.email }}</a></p>
@@ -21,13 +21,14 @@
     {% endif %}
 </div>
 
-<table class="styled-table" style="position: absolute;width: 900px;top: 30%;">
-    <tr class="active-row">
-        <th>User ID</th>
+<table class="styled-table" style="position: absolute;width: 600px;top: 70%; margin-left:-300px; left:50%">
+        <th>Subject ID</th><th>Subject Name</th><th>Subject Code</th><th>Leader</th>
     </tr>
     {% for row in result %}
-    <tr>
-        <td>{{row.user_id}}</td>
+        <td>{{ row.subject_id }}</td>
+        <td>{{ row.subject_name }}</td>
+        <td>{{ row.subject_code }}</td>
+        <td>{{ row.subject_leader }}</td>
     </tr>
     {% endfor %}
 
