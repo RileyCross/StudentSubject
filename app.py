@@ -69,7 +69,6 @@ def newuser():
                     request.form['email'],
                     request.form['dob'],
                     request.form['yearlevel'],
-                    #request.form['password'],
                     encrypted_password,
                     avatar_filename
                     )
@@ -144,14 +143,12 @@ def select():
 
         with create_connection() as connection:
             with connection.cursor() as cursor:
-                sql = """insert into users (subject_name, subject_code, subject_leader, subject_description, subject_maxstudents) 
+                sql = """insert into users (subject_name, subject_code, subject_leader) 
                 values (%s,%s,%s,%s,%s)"""
                 values = (
                     request.form['subject_name'],
                     request.form['subject_code'],
-                    request.form['subject_leader'],
-                    request.form['subject_description'],
-                    request.form['subject_maxstudents']
+                    request.form['subject_leader']
                 )
                 cursor.execute(sql,values)
                 connection.commit()
