@@ -86,12 +86,6 @@ li {
     to { opacity: 0; }
 }
 
-
-.btn {
-    border-radius: 0px;
-    border: 3px outset lightgray
-}
-
 .styled-table {
     border-collapse:collapse;
     border-width: 0px;
