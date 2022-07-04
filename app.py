@@ -105,7 +105,7 @@ def userlogin():
             session['logged_in'] = True
             session['name'] = result['name']
             session['role'] = result['role']
-            session['id'] = result['id'],
+            session['id'] = result['id']
             flash("Welcome, " +result["name"])
             return redirect("/home")    
         else:
