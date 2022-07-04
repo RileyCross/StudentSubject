@@ -3,9 +3,20 @@
 {% block title %}Select Subject{% endblock %}
 {% block extra_class %}customBackground{% endblock %}
 {% block content %}
-<div>
+
+<div class="RegisterDiv">
+    <h2 style="color:white">Select Subjects</h2>
+    <select name="year">
+        <option disabled selected value="">-- Select Year Level --</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+    </select>
 
     <select name="subjects">
+        <option disabled selected value="">-- Select Subject --</option>
         <option value="DTE">Robotics</option>
         <option value="COM">Computer Studies</option>
         <option value="DES">Design</option>
@@ -13,6 +24,7 @@
         <option value="CAD">Computer Aided Design</option>
     </select>
 
+    
 </div>
 
 {% endblock %}
