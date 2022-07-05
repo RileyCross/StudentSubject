@@ -153,7 +153,7 @@ def delete():
     flash('Successfully deleted')
     return redirect('/home')
 
-@app.route('/select-subject', methods=['GET','POST'])
+@app.route('/add', methods=['GET','POST'])
 def select():
     if request.method == 'POST':
 
