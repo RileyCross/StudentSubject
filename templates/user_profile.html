@@ -8,27 +8,34 @@
 <div class="LoginDiv" style="top:40%">
     <h2 style="font-size: xxx-large;">{{ result.name }}'s Profile</h2>
 
-    <p><a  class="btn btn-primary" style="float:left;" href="mailto:{{ result.email }}">E-mail: {{ result.email }}</a></p>
+    <p><a class="btn btn-primary" style="float:left;" href="mailto:{{ result.email }}">E-mail: {{ result.email }}</a></p>
+    <div class="ButtonsDiv" style="position:absolute; bottom:55%">
+        <p>Year {{ result.yearlevel }}<p>
+    </div>
 
     <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250" style="margin-bottom:50px; float:right;">
     {% if result["role"] == 'admin' %}
     <div class="ButtonsDiv">
         <p>
             <a style="bottom: 5%;position: absolute;right: 20%;"class="btn btn-primary" href="/edit?id={{ result.id }}">Edit Information</a>
-            <a style="bottom: 5%;position: absolute;right: 2%;"class="btn btn-primary" href="/delete?id={{ result.id }}">Delete User</a>
+            <a style="bottom: 5%;position: absolute;right: 4%;"class="btn btn-primary" href="/delete?id={{ result.id }}">Delete User</a>
         </p>
     </div>
     {% endif %}
+    <div class="ButtonsDiv">
+        <p>
+            <a style="bottom: 5%;position: absolute;right: 80%;"class="btn btn-primary" href="/add">Add Subjects</a>
+        </p>
+    </div>
 </div>
 
 <table class="styled-table" style="position: absolute;width: 600px;top: 70%; margin-left:-300px; left:50%">
-        <th>Subject ID</th><th>Subject Name</th><th>Subject Code</th><th>Leader</th>
+        <th>Subject ID</th><th>Subject Name</th><th>Subject Code</th>
     </tr>
-    {% for row in result %}
+    {% for row in subjects %}
         <td>{{ row.subject_id }}</td>
         <td>{{ row.subject_name }}</td>
         <td>{{ row.subject_code }}</td>
-        <td>{{ row.subject_leader }}</td>
     </tr>
     {% endfor %}
 
