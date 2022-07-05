@@ -62,8 +62,8 @@ def newuser():
 
         with create_connection() as connection:
             with connection.cursor() as cursor:
-                sql="""insert into users (name, email, dob, yearlevel, password)
-                    values(%s, %s, %s, %s, %s)"""
+                sql="""insert into users (name, email, dob, yearlevel, password, avatar)
+                    values(%s, %s, %s, %s, %s, %s)"""
                 values=(
                     request.form['name'],
                     request.form['email'],
@@ -112,11 +112,13 @@ def userlogin():
             return redirect("/")
     else:
         return render_template('user_login.html')
+
 @app.route('/logout')
 def logout():
     session.clear()
     flash("You have successfully logged out")
     return redirect('/')
+
 # User Dashboard
 @app.route('/dash')
 def board():
@@ -135,7 +137,21 @@ def view_user():
         with connection.cursor() as cursor:
             cursor.execute("select * from users where id=%s", request.args['id'])
             result = cursor.fetchone()
-    return render_template('user_profile.html', result=result)
+        with connection.cursor() as cursor:
+            cursor.execute("""SELECT users.name, users.email, users.id, subjects.subject_id, subjects.subject_name, subjects.subject_code
+                FROM users INNER JOIN (subjects INNER JOIN connectsubjects ON subjects.subject_id = connectsubjects.subject_id) ON users.id = connectsubjects.user_id
+                WHERE (((users.id)=%s));""", request.args['id'])
+            subjects = cursor.fetchall()
+    return render_template('user_profile.html', result=result, subjects=subjects)
+
+@app.route('/delete')
+def delete():
+    with create_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("delete from users where id=%s", request.args['id'])
+            connection.commit()
+    flash('Successfully deleted')
+    return redirect('/home')
 
 @app.route('/select-subject', methods=['GET','POST'])
 def select():
