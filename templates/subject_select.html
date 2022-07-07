@@ -13,16 +13,18 @@
         <option value="11">11</option>
         <option value="12">12</option>
         <option value="13">13</option>
-    </select> <br><br>
-
-    <select name="subjects">
-        <option disabled selected value="">-- Select Subject --</option>
-        <option value="DTE">Robotics</option>
-        <option value="COM">Computer Studies</option>
-        <option value="DES">Design</option>
-        <option value="ENL">English</option>
-        <option value="CAD">Computer Aided Design</option>
     </select>
+    <br><br>
+
+    <select name="s">
+        <option disabled selected value="">-- Select Subject --</option>
+        {% for s in subjects %}
+        <option value="{{ s.subject_code }}">{{ s.subject_name }} [{{ s.subject_code }}]</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+    <input type="submit" value="Submit" style="width:auto"/>
 
 
 </div>
