@@ -21,7 +21,8 @@ def restrict():
         'board'
     ]
     admin_only = [
-        'board'
+        'board',
+        'addsubject'
     ]
     if 'logged_in' not in session and request.endpoint in restricted_pages:
         flash("You lack permissions to access that page.")
@@ -144,6 +145,7 @@ def view_user():
             subjects = cursor.fetchall()
     return render_template('user_profile.html', result=result, subjects=subjects)
 
+# Delete User
 @app.route('/delete')
 def delete():
     with create_connection() as connection:
@@ -153,7 +155,28 @@ def delete():
     flash('Successfully deleted')
     return redirect('/home')
 
-@app.route('/add', methods=['GET','POST'])
+# Add subjects to list for students to choose from
+@app.route('/add-subject', methods=['GET','POST'])
+def addsubject():
+    if request.method == 'POST':
+        with create_connection() as connection:
+            with connection.cursor() as cursor:
+                sql = """insert into subjects (subject_name, subject_code, subject_leader) 
+                values (%s,%s,%s,%s,%s)"""
+                values = (
+                    request.form['subject_name'],
+                    request.form['subject_code'],
+                    request.form['subject_leader']
+                )
+                cursor.execute(sql,values)
+                connection.commit()
+        flash('Successfully added subject')
+        return redirect('/home')
+    else:
+        return render_template("add_subject.html")
+
+# Add Subject
+@app.route('/select-subjects', methods=['GET','POST'])
 def select():
     if request.method == 'POST':
 
@@ -169,7 +192,11 @@ def select():
                 cursor.execute(sql,values)
                 connection.commit()
 
-    return render_template('subject_select.html')
+    with create_connection() as connection:
+        with connection.cursor() as cursor:
+            cursor.execute("select * from subjects")
+            subjects = cursor.fetchall()
+    return render_template('subject_select.html', subjects=subjects)
 
 
 if __name__ == '__main__':
