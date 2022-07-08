@@ -5,26 +5,19 @@
 {% block content %}
 
 <div class="RegisterDiv">
+    <form>
     <h2 style="color:white">Select Subjects</h2>
-    <select name="year">
-        <option disabled selected value="">-- Select Year Level --</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-    </select>
-    <br><br>
 
     <select name="s">
         <option disabled selected value="">-- Select Subject --</option>
         {% for s in subjects %}
-        <option value="{{ s.subject_code }}">{{ s.subject_name }} [{{ s.subject_code }}]</option>
+        <option value="{{ s.subject_id }}">{{ s.subject_name }} [{{ s.subject_code }}]</option>
         {% endfor %}
     </select>
 
     <br><br>
     <input type="submit" value="Submit" style="width:auto"/>
+    </form>
 
 
 </div>
