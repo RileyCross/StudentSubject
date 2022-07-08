@@ -18,11 +18,15 @@ wsgi_app = app.wsgi_app
 @app.before_request
 def restrict():
     restricted_pages = [
-        'board'
+        'board',
+        'view_user',
+        'select'
     ]
     admin_only = [
         'board',
-        'addsubject'
+        'addsubject',
+        'delete'
+
     ]
     if 'logged_in' not in session and request.endpoint in restricted_pages:
         flash("You lack permissions to access that page.")
@@ -79,6 +83,7 @@ def newuser():
                 except pymysql.err.IntegrityError:
                     flash("Email already exists")
                     return redirect('/')
+    
             return redirect('/home')
     return render_template('user_register.html')
 
@@ -179,11 +184,10 @@ def addsubject():
 @app.route('/select-subjects', methods=['GET','POST'])
 def select():
     if request.method == 'POST':
-
         with create_connection() as connection:
             with connection.cursor() as cursor:
-                sql = """insert into users (subject_name, subject_code, subject_leader) 
-                values (%s,%s,%s,%s,%s)"""
+                sql = ("""insert into users (subject_name, subject_code, subject_leader)
+                values (%s,%s, %s) where id=%s""", request.args['id'])
                 values = (
                     request.form['subject_name'],
                     request.form['subject_code'],
@@ -197,6 +201,7 @@ def select():
             cursor.execute("select * from subjects")
             subjects = cursor.fetchall()
     return render_template('subject_select.html', subjects=subjects)
+        
 
 
 if __name__ == '__main__':
