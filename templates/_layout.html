@@ -42,6 +42,11 @@
         {% if 'logged_in' in session %}
         <li><a href="/view?id={{session.id}}">View Profile</a></li>
         {% endif %}
+        {% if session["role"]=='admin' %}
+        <li><a href="/admin">Admin</a></li>
+        {% else %}
+
+        {% endif %}
         <li style="float:right">
             {% if 'logged_in' in session %}
             <a class="active" href="/logout">Log out</a>
@@ -49,6 +54,7 @@
             <a class="active" href="/">Login</a>
             {% endif %}
         </li>
+
         
     <!-- Checks if user is NOT Logged in, to view Sign-Up Button-->
         <li style="float:right">
