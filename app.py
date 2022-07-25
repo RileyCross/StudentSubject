@@ -25,7 +25,9 @@ def restrict():
     admin_only = [
         'board',
         'addsubject',
-        'delete'
+        'delete',
+        'addsubject',
+        'adminpage'
 
     ]
     if 'logged_in' not in session and request.endpoint in restricted_pages:
@@ -186,12 +188,10 @@ def select():
     if request.method == 'POST':
         with create_connection() as connection:
             with connection.cursor() as cursor:
-                sql = ("""insert into users (subject_name, subject_code, subject_leader)
-                values (%s,%s, %s) where id=%s""", request.args['id'])
+                sql = "insert into connectsubjects (user_id, subject_id) values (%s,%s)"
                 values = (
-                    request.form['subject_name'],
-                    request.form['subject_code'],
-                    request.form['subject_leader']
+                    session['id'],
+                    request.form['subject_id']
                 )
                 cursor.execute(sql,values)
                 connection.commit()
@@ -201,6 +201,10 @@ def select():
             cursor.execute("select * from subjects")
             subjects = cursor.fetchall()
     return render_template('subject_select.html', subjects=subjects)
+
+@app.route('/admin')
+def adminpage():
+    return render_template('_admin.html')
         
 
 
