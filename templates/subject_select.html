@@ -5,10 +5,10 @@
 {% block content %}
 
 <div class="RegisterDiv">
-    <form>
+    <form method="POST">
     <h2 style="color:white">Select Subjects</h2>
 
-    <select name="s">
+    <select name="subject_id">
         <option disabled selected value="">-- Select Subject --</option>
         {% for s in subjects %}
         <option value="{{ s.subject_id }}">{{ s.subject_name }} [{{ s.subject_code }}]</option>
