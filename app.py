@@ -168,12 +168,11 @@ def addsubject():
     if request.method == 'POST':
         with create_connection() as connection:
             with connection.cursor() as cursor:
-                sql = """insert into subjects (subject_name, subject_code, subject_leader) 
-                values (%s,%s,%s,%s,%s)"""
+                sql = """insert into subjects (subject_name, subject_code) 
+                values (%s,%s)"""
                 values = (
                     request.form['subject_name'],
-                    request.form['subject_code'],
-                    request.form['subject_leader']
+                    request.form['subject_code']
                 )
                 cursor.execute(sql,values)
                 connection.commit()
