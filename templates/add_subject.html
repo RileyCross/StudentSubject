@@ -1,8 +1,17 @@
 {% extends '_layout.html' %}
 
 {% block title %}Add Subject{% endblock %}
-
+{% block extra_class %}customBackground{% endblock %}
 {% block content %}
 
+<div class="RegisterDiv">
+    <h2>Create Subject</h2>
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+        <input id="u" name="subject_name" type="text" required placeholder="Subject Name"><br>
+        <input id="em" name="subject_code" type="email" required placeholder="Suject Code"><br>
+
+        <input id="b" name="submit" type="submit" value="Submit"> 
+    </form>
+</div>
 
 {% endblock %}
