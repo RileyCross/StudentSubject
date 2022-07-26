@@ -204,6 +204,24 @@ def select():
             subjects = cursor.fetchall()
     return render_template('subject_select.html', subjects=subjects)
 
+@app.route('/delete-subject', methods=['GET','POST'])
+def deletesubject():
+    if request.method == 'POST':
+        with create_connection() as connection:
+            with connection.cursor() as cursor:
+                sql = """delete from subjects where subject_id=%s (subject_name, subject_code) 
+                values (%s,%s)"""
+                values = (
+                    request.form['subject_name'],
+                    request.form['subject_code']
+                )
+                cursor.execute(sql,values)
+                connection.commit()
+        flash('Successfully added subject')
+        return redirect('/home')
+    else:
+        return render_template("add_subject.html")
+
 @app.route('/admin')
 def adminpage():
     return render_template('_admin.html')
