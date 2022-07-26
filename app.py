@@ -27,7 +27,8 @@ def restrict():
         'addsubject',
         'delete',
         'addsubject',
-        'adminpage'
+        'adminpage',
+        'deletesubject'
 
     ]
     if 'logged_in' not in session and request.endpoint in restricted_pages:
@@ -194,6 +195,8 @@ def select():
                 )
                 cursor.execute(sql,values)
                 connection.commit()
+            flash('Updated Subjects')
+            return redirect('/home')
 
     with create_connection() as connection:
         with connection.cursor() as cursor:
