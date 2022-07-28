@@ -1,0 +1,25 @@
+{% extends '_layout.html' %}
+
+{% block title %}Delete Subject{% endblock %}
+{% block extra_class %}customBackground{% endblock %}
+{% block content %}
+
+<div class="RegisterDiv">
+    <form method="POST">
+    <h2 style="color:white">Delete Subjects</h2>
+
+    <select name="subject_id">
+        <option disabled selected value="">-- Select Subject --</option>
+        {% for s in subjects %}
+        <option value="{{ s.subject_id }}">{{ s.subject_name }} [{{ s.subject_code }}]</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+    <input type="submit" value="Submit" style="width:auto"/>
+    </form>
+
+
+</div>
+
+{% endblock %}
