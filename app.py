@@ -20,7 +20,10 @@ def restrict():
     restricted_pages = [
         'board',
         'view_user',
-        'select'
+        'select',
+        'adminpage',
+        'addsubject',
+        'deletesubject'
     ]
     admin_only = [
         'board',
@@ -32,8 +35,11 @@ def restrict():
 
     ]
     if 'logged_in' not in session and request.endpoint in restricted_pages:
-        flash("You lack permissions to access that page.")
+        flash("ERROR: Please sign in to access this page")
         return redirect('/')
+    if 'role' in session and session['role'] != 'admin' and request.endpoint in admin_only:
+        flash("ERROR: You lack permissions to access that page")
+        return redirect('/home')
 
 # Remade version of the 403 error page
 @app.errorhandler(403)
@@ -125,7 +131,7 @@ def userlogin():
 @app.route('/logout')
 def logout():
     session.clear()
-    flash("You have successfully logged out")
+    flash("You have logged out")
     return redirect('/')
 
 # User Dashboard
@@ -162,7 +168,7 @@ def delete():
             connection.commit()
     flash('Successfully deleted')
     return redirect('/home')
-
+ 
 # Add subjects to list for students to choose from
 @app.route('/add-subject', methods=['GET','POST'])
 def addsubject():
