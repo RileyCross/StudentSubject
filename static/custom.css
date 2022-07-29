@@ -28,10 +28,11 @@
 
 
 .customBackground {
-    background-image: url('images/backgroundTest7.png');
-    /*background-repeat: no-repeat;*/
+    background-image: url('images/backgroundTest8.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
     background-attachment: fixed;
-    opacity: 0.9
+    opacity: 0.8
 }
 
 ul {
