@@ -12,6 +12,21 @@
     transform: translate(-50%, -50%);
 }
 
+.ProfileDiv {
+    background: #2b2b2b;
+    color: rgb(253, 253, 253);
+    /*border: 3px outset lightgray;*/
+    padding: 4em;
+    /*border-radius: 5px;*/
+    position: absolute;
+    height: 80%;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -35%);
+}
+
 .LoginDiv {
     background: #2b2b2b;
     color: rgb(253, 253, 253);
@@ -96,6 +111,7 @@ li {
     min-width: 400px;
     box-shadow: 0 0 20px rgb(0, 0, 0);
 }
+
 .styled-table thead tr {
     background-color: #2c2c2c;
     color: #ffffff;

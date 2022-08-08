@@ -5,13 +5,16 @@
 {% block extra_class %}customBackground{% endblock %}
 
 {% block content %}
-<div class="LoginDiv" style="top:40%">
-    <h2 style="font-size: xxx-large;">{{ result.name }}'s Profile</h2>
-
-    <p><a class="btn btn-primary" style="float:left;" href="mailto:{{ result.email }}">E-mail: {{ result.email }}</a></p>
-    <div class="ButtonsDiv" style="position:absolute; bottom:55%">
-        <p>Year {{ result.yearlevel }}<p>
-    </div>
+<div class="ProfileDiv" style="top:40%">
+    <h1 style="font-size: xxx-large; font-weight: bold;">Name</h1>
+    <h3>{{ result.name }}</h3>
+<br/>
+    <h1 style="font-size: xxx-large; font-weight: bold;">E-mail</h1>
+    <p><a class="btn btn-primary" style="float:left;" href="mailto:{{ result.email }}">{{ result.email }}</a></p>
+<br/>
+<br/>
+    <h1 style="font-size: xxx-large; font-weight: bold;">Year</h1>
+    <h3>{{ result.yearlevel }}<h3>
 
     <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250" style="margin-bottom:50px; float:right;">
     {% if result["role"] == 'admin' %}
