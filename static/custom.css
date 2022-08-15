@@ -8,8 +8,6 @@
     width: 650px;
     top: 50%;
     left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
 }
 
 .ProfileDiv {
@@ -17,14 +15,12 @@
     color: rgb(253, 253, 253);
     /*border: 3px outset lightgray;*/
     padding: 4em;
+    display:flex;
     /*border-radius: 5px;*/
     /*position: absolute;*/
     height: 70%;
-    width: 60%;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -35%);
+    width: min-content;
+    gap:33px;
 }
 
 .LoginDiv {
@@ -37,8 +33,6 @@
     width: 700px;
     top: 50%;
     left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
 }
 
 
