@@ -5,7 +5,9 @@
 {% block extra_class %}customBackground{% endblock %}
 
 {% block content %}
+
 <div class="ProfileDiv" style="top:40%">
+    <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250" style="top:100%">
     <h1 style="font-size: xxx-large; font-weight: bold;">Name</h1>
     <h3>{{ result.name }}</h3>
 <br/>
@@ -16,23 +18,22 @@
     <h1 style="font-size: xxx-large; font-weight: bold;">Year</h1>
     <h3>{{ result.yearlevel }}<h3>
 
-    <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250" style="top:100%; float:right;">
     {% if result["role"] == 'admin' %}
     <div class="ButtonsDiv">
         <p>
-            <a style="bottom: 5%;position: absolute;right: 20%;"class="btn btn-primary" href="/edit?id={{ result.id }}">Edit Information</a>
-            <a style="bottom: 5%;position: absolute;right: 4%;"class="btn btn-primary" href="/delete?id={{ result.id }}">Delete User</a>
+            <a style="bottom: 5%;right: 20%;"class="btn btn-primary" href="/edit?id={{ result.id }}">Edit Information</a>
+            <a style="bottom: 5%;right: 4%;"class="btn btn-primary" href="/delete?id={{ result.id }}">Delete User</a>
         </p>
     </div>
     {% endif %}
     <div class="ButtonsDiv">
         <p>
-            <a style="bottom: 5%;position: absolute;right: 80%;"class="btn btn-primary" href="/select-subjects">Add Subjects</a>
+            <a style="bottom: 5%;right: 80%;"class="btn btn-primary" href="/select-subjects">Add Subjects</a>
         </p>
     </div>
 </div>
 
-<table class="styled-table" style="position: absolute;width: 600px;top: 70%; margin-left:-300px; left:50%">
+<table class="styled-table" style="width: 600px;top: 70%; margin-left:-300px; left:50%">
         <th>Subject ID</th><th>Subject Name</th><th>Subject Code</th>
     </tr>
     {% for row in subjects %}
