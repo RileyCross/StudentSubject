@@ -16,7 +16,7 @@
     <h1 style="font-size: xxx-large; font-weight: bold;">Year</h1>
     <h3>{{ result.yearlevel }}<h3>
 
-    <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250" style="margin-bottom:50px; float:right;">
+    <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250" style="top:100%; float:right;">
     {% if result["role"] == 'admin' %}
     <div class="ButtonsDiv">
         <p>
