@@ -32,8 +32,8 @@ def restrict():
         'addsubject',
         'adminpage',
         'deletesubject'
-
     ]
+    
     if 'logged_in' not in session and request.endpoint in restricted_pages:
         flash("ERROR: Please sign in to access this page")
         return redirect('/')
@@ -231,7 +231,6 @@ def deletesubject():
 def adminpage():
     return render_template('_admin.html')
         
-
 
 if __name__ == '__main__':
     import os
