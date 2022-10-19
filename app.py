@@ -128,6 +128,36 @@ def userlogin():
     else:
         return render_template('user_login.html')
 
+@app.route('/edit', methods=['GET','POST'])
+def edit():
+        if request.method == 'POST':
+            with create_connection() as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute("""UPDATE users SET
+                                    name = %s
+                                    email = %s
+                                    password = %s,
+                                    WHERE id = %s
+                                """
+                                    (
+                                        request.form['name'],
+                                        request.form['email'], 
+                                        request.form['password'],
+                                        request.form['id']
+                                        )
+                                    )
+                    connection.commit()
+                return redirect('/')
+            return 'Successfully edited table!'
+        else:
+            with create_connection() as connection:
+                with connection.cursor() as cursor:
+                    sql = "SELECT * FROM users WHERE id = %s"
+                    values = (request.args['id'])
+                    cursor.execute(sql, values)
+                    result = cursor.fetchone()
+            return render_template('user_edit.html', result=result)
+
 @app.route('/logout')
 def logout():
     session.clear()

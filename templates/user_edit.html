@@ -1,0 +1,57 @@
+{% extends '_layout.html' %}
+
+{% block title %} Edit Person {% endblock %}
+{% block extra_class %}customBackground{% endblock %}
+
+{% block content %}
+<div class="RegisterDiv">
+    <form method="post" enctype="multipart/form-data">
+        <h1>Editing {{ result.name }}</h1>
+        <input type="hidden" name="id" value="{{ result.id }}">
+        <input type="hidden" name="old_avatar" value="{{ result.avatar }}">
+        <br />
+        <label for="fn">Name:</label>
+        <br />
+        <input id="fn" type="text" name="first_name" required value="{{ result.name }}" />
+        <br />
+        <label for="mail">Email:</label>
+        <br />
+        <input id="mail" type="email" name="last_name" required value="{{ result.email }}" />
+        <br />
+        <label for="pass">Password:</label> <br />
+        <input id="pass" type="password" name="passw" required value="{{ result.password }}" />
+        <button id="show" type="button">Show</button>
+        <br />
+        <label for="mail">Email:</label> <br />
+        <input id="mail" type="email" name="email" required value="{{ result.email }}" />
+        <br>
+        <label for="pic">Profile picture:</label>
+        <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="32"> <br/>
+        <input id="pic" type="file" name="avatar">
+        <br />
+        <br/>
+
+        <input type="submit" value="Save Changes" />
+    </form>
+</div>
+
+<script>
+    let passwordInput = document.getElementById('pass');
+    let showButton = document.getElementById('show');
+
+    showButton.addEventListener('click', showPassword);
+
+    function showPassword() {
+        let type = passwordInput.getAttribute('type');
+        if (type == 'password') {
+            passwordInput.setAttribute('type', 'text');
+            showButton.textContent = 'Hide';
+        } else {
+            passwordInput.setAttribute('type', 'password');
+            showButton.textContent = 'Show';
+        }
+    }
+
+</script>
+
+{% endblock %}
