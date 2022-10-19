@@ -8,41 +8,40 @@
 <div class="ProfileDiv">
     <img src="{{ url_for('static', filename='images/' + (result.avatar or 'default.png')) }}" height="250" width="250"> <!-- Users Avatar -->
     <div>
-        <h1 style="font-size: xxx-large; font-weight: bold;">Name</h1> <!-- Users Full Name -->
-        <h3>{{ result.name }}</h3>
+        <h1 style="font-size: xxx-large; font-weight: bold; position:absolute; top: 5%; left: 35%">Name</h1> <!-- Users Full Name -->
+        <h3 style="position:absolute; top: 15%; left: 35%">{{ result.name }}</h3>
     </div>
 <br/>
     <div> <!-- Users Email -->
-        <h1 style="font-size: xxx-large; font-weight: bold;">E-mail</h1>
-        <p><a class="btn btn-primary" style="float:left;" href="mailto:{{ result.email }}">{{ result.email }}</a></p>
+        <h1 style="font-size: x-large; font-weight: bold; position:absolute; top: 45%;">E-mail</h1>
+        <p><a style="float:left; position:absolute; top: 50%;" >{{ result.email }}</a></p>
     </div>
 
 <br/>
-<br/>
     <div><!-- Users Year Level -->
-        <h1 style="font-size: xxx-large; font-weight: bold;">Year</h1>
-        <h3>{{ result.yearlevel }}<h3>
+        <h1 style="font-size: x-large; font-weight: bold; position:absolute; top: 25%; left:35%">Year</h1>
+        <p style="position:absolute; top: 30%; left:35%">{{ result.yearlevel }}</p>
     </div>
     <br/>
-<h1 style="font-size: xxx-large; font-weight: bold; position:absolute; bottom:60%">Bio</h1>
-<input type="text">
+<h1 style="font-size: xxx-large; font-weight: bold;  position:absolute; top: 65%;">Bio</h1>
+<input type="text" style="background: #616161; border-width: 0px; width: 400px; height: 100px; position:absolute; top: 75%; color:white">
     {% if result["role"] == 'admin' %}
     <div class="ButtonsDiv">
         <p>
-            <a style="display: flex; width: max-content;"class="btn btn-primary" href="/edit?id={{ result.id }}">Edit User</a>
-            <a style="display: flex; width: max-content"class="btn btn-primary" href="/delete?id={{ result.id }}">Delete User</a>
+            <a style="display: flex; width: max-content; position: absolute; left:85%; top: 90%"class="btn btn-primary" href="/edit?id={{ result.id }}">Edit User</a>
+            <a style="display: flex; width: max-content; position: absolute; left:70%; top: 90%"class="btn btn-primary" href="/delete?id={{ result.id }}">Delete User</a>
         </p>
     </div>
     {% endif %}
     <div class="ButtonsDiv">
         <p>
-            <a class="btn btn-primary" href="/select-subjects">Add Subjects</a>
+            <a class="btn btn-primary" style="position: absolute; top: 92%" href="/select-subjects">Add Subjects</a>
         </p>
     </div>
 </div>
 
 
-<table class="styled-table" style="width: 600px;">
+<table class="styled-table" style="width: 600px; position: absolute; left: 60%">
         <th>Subject ID</th><th>Subject Name</th><th>Subject Code</th>
     </tr>
     {% for row in subjects %}
