@@ -148,7 +148,6 @@ def edit():
                                     )
                     connection.commit()
                 return redirect('/')
-            return 'Successfully edited table!'
         else:
             with create_connection() as connection:
                 with connection.cursor() as cursor:
