@@ -92,6 +92,20 @@ li {
     justify-content: center;
     animation: fade-out 1s 7s both;
 }
+.Success {
+    padding: 10px;
+    background-color: #17d130; /* Green */
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    bottom: 0%;
+    position: absolute;
+    right: 2%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    animation: fade-out 1s 7s both;
+}
 
 /* Flash Message Fade Animation */
 @keyframes fade-out {
